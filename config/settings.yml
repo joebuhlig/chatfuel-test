@@ -1,0 +1,13 @@
+plugins:
+  chatfuel_enabled:
+    default: false
+    client: true
+  chatfuel_broadcast_api_token:
+    default: ""
+    client: true
+  chatfuel_bot_id:
+    default: ""
+    client: false
+  chatfuel_block_id:
+    default: ""
+    client: false

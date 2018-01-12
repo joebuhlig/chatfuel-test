@@ -1,0 +1,6 @@
+en:
+  site_settings: 
+    chatfuel_enabled: 'Enable the Chatfuel plugin.'
+    chatfuel_broadcast_api_token: 'Broadcasting API Token from Chatfuel bot configuration settings.'
+    chatfuel_bot_id: "ID for the bot on Chatfuel."
+    chatfuel_block_id: "Block id for the Discourse Message to use."
