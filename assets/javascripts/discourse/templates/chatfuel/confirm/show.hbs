@@ -1,0 +1,9 @@
+<center>
+  {{#if confirmed}}
+    <p>{{i18n 'chatfuel.confirmed'}}</p>
+  {{else}}
+    <p>{{i18n 'chatfuel.confirmation'}}</p>
+    {{#d-button class="btn-primary" action="confirm"}}{{i18n 'chatfuel.confirmation_yes'}}{{/d-button}}
+    <a class="btn btn-danger" href="/">{{i18n 'chatfuel.confirmation_no'}}</a>
+  {{/if}}
+</center>

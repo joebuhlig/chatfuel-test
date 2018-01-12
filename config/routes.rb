@@ -1,5 +1,6 @@
 require_dependency "chatfuel_constraint"
 
 Chatfuel::Engine.routes.draw do
-  post "/confirm" => "confirm#process", constraints: ChatfuelConstraint.new
+  get "/confirm" => "confirm#confirm", constraints: ChatfuelConstraint.new
+  post "/confirm/submit" => "confirm#submit", constraints: ChatfuelConstraint.new
 end

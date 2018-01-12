@@ -1,3 +1,7 @@
 en:
   js:
     chatfuel:
+      confirmation: "Do you want your notifications be pushed to Facebook Messenger?"
+      confirmation_yes: "Yes"
+      confirmation_no: "No"
+      confirmed: "Thanks! You'll now receive notifications in Facebook Messenger. Enjoy!"
