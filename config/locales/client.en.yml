@@ -5,3 +5,5 @@ en:
       confirmation_yes: "Yes"
       confirmation_no: "No"
       confirmed: "Thanks! You'll now receive notifications in Facebook Messenger. Enjoy!"
+      preference_label: "Do you want your notifications to be pushed to Facebook Messenger?"
+      user_preference: "Facebook notifications?"

@@ -1,0 +1,6 @@
+{{#if siteSettings.chatfuel_enabled}}
+  <div class="control-group">
+    <label class="control-label">{{i18n 'chatfuel.user_preference'}}</label>
+    {{preference-checkbox labelKey="chatfuel.preference_label" checked=this.parentView._targetObject.model.custom_fields.chatfuel_enabled}}
+  </div>
+{{/if}}

@@ -3,8 +3,24 @@ module Chatfuel
     isolate_namespace Chatfuel
 
     config.after_initialize do
+
+      User.register_custom_field_type('chatfuel_enabled', :boolean)
+
       Discourse::Application.routes.append do
         mount ::Chatfuel::Engine, at: "/chatfuel"
+      end
+
+      require_dependency 'user_serializer'
+      class ::UserSerializer
+        attributes :chatfuel_enabled
+
+        def chatfuel_enabled
+          if !object.custom_fields["chatfuel_enabled"]
+            object.custom_fields["chatfuel_enabled"] = false
+            object.save
+          end
+          object.custom_fields["chatfuel_enabled"]
+        end
       end
 
       module ::Jobs
@@ -27,5 +43,7 @@ module Chatfuel
 end
 
 DiscourseEvent.on(:post_notification_alert) do |user, payload|
-  Jobs.enqueue(:send_chatfuel_message, {discourse_message: payload[:topic_title], discourse_url: "#{Discourse.base_url}#{payload[:post_url]}", chatfuel_user_id: user.custom_fields["chatfuel_id"]})
+  if user.custom_fields["chatfuel_enabled"]
+    Jobs.enqueue(:send_chatfuel_message, {discourse_message: payload[:topic_title], discourse_url: "#{Discourse.base_url}#{payload[:post_url]}", chatfuel_user_id: user.custom_fields["chatfuel_id"]})
+  end
 end

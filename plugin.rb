@@ -11,4 +11,6 @@ register_asset 'stylesheets/chatfuel.scss'
 after_initialize do
 end
 
+DiscoursePluginRegistry.serialized_current_user_fields << "chatfuel_enabled"
+
 load File.expand_path('../lib/chatfuel/engine.rb', __FILE__)
