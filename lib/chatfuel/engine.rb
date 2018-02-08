@@ -26,7 +26,7 @@ module Chatfuel
       module ::Jobs
         class SendChatfuelMessage < Jobs::Scheduled
           def execute(args)
-            uri = URI("https://api.chatfuel.com/bots/#{SiteSetting.chatfuel_bot_id}/users/#{args[:chatfuel_user_id]}/send?chatfuel_token=#{SiteSetting.chatfuel_broadcast_api_token}&chatfuel_block_id=#{SiteSetting.chatfuel_block_id}&discourse_message=#{args[:discourse_message]}&discourse_url=#{args[:discourse_url]}")
+            uri = URI("https://api.chatfuel.com/bots/#{SiteSetting.chatfuel_bot_id}/users/#{args[:chatfuel_user_id]}/send?chatfuel_token=#{SiteSetting.chatfuel_broadcast_api_token}&chatfuel_block_id=#{SiteSetting.chatfuel_block_id}&discourse_title=#{args[:discourse_title]}&discourse_body=#{args[:discourse_body]}&discourse_url=#{args[:discourse_url]}")
 
             http = Net::HTTP.new(uri.host, uri.port)
             http.use_ssl = true
@@ -44,6 +44,9 @@ end
 
 DiscourseEvent.on(:post_notification_alert) do |user, payload|
   if user.custom_fields["chatfuel_enabled"]
-    Jobs.enqueue(:send_chatfuel_message, {discourse_message: payload[:topic_title], discourse_url: "#{Discourse.base_url}#{payload[:post_url]}", chatfuel_user_id: user.custom_fields["chatfuel_id"]})
+    key = "notifications." + Notification.types[payload[:notification_type]].to_s
+    notification_title = I18n.t(key, username: payload[:username], description: payload[:topic_title])
+    notification_body = payload[:excerpt]
+    Jobs.enqueue(:send_chatfuel_message, {discourse_title: notification_title, discourse_body: notification_body, discourse_url: "#{Discourse.base_url}#{payload[:post_url]}", chatfuel_user_id: user.custom_fields["chatfuel_id"]})
   end
 end

@@ -4,3 +4,28 @@ en:
     chatfuel_broadcast_api_token: 'Broadcasting API Token from Chatfuel bot configuration settings.'
     chatfuel_bot_id: "ID for the bot on Chatfuel."
     chatfuel_block_id: "Block id for the Discourse Message to use."
+  notifications:
+    mentioned: "%{username} mentioned you: %{description}"
+    group_mentioned: "%{username} mentioned you: %{description}"
+    quoted: "%{username} quoted you: %{description}"
+    replied: "%{username} replied to you: %{description}"
+    posted: "%{username} posted: %{description}"
+    edited: "%{username} edited: %{description}"
+    liked: "%{username} liked: %{description}"
+    liked_2: "%{username}, %{username2} liked: %{description}"
+    liked_many:
+      one: "%{username}, %{username2} and 1 other liked: %{description}"
+      other: "%{username}, %{username2} and %{count} others liked: %{description}"
+    private_message: "%{username} sent you a PM: %{description}"
+    invited_to_private_message: "<p>%{username} invited you: %{description}"
+    invited_to_topic: "%{username} invited you: %{description}"
+    invitee_accepted: "%{username} accepted your invitation"
+    moved_post: "%{username} moved: %{description}"
+    linked: "%{username} linked: %{description}"
+    granted_badge: "Earned '%{description}'"
+    topic_reminder: "%{username} %{description}"
+    watching_first_post: "New Topic: %{description}"
+
+    group_message_summary:
+        one: "%{count} message in your %{group_name} inbox"
+        other: "%{count} messages in your %{group_name} inbox"
